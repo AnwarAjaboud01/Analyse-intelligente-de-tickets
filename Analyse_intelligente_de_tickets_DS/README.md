@@ -37,3 +37,4 @@ Ce projet vise à développer une plateforme hybride combinant des modèles de M
 
 ## Auteur
 Personne C (Intégrateur Fullstack)
+py -3.10 src/ml/predict_pipeline.py
