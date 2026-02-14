@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Data (garder les CSV pour le projet)
+# *.csv
+# *.json
+# *.xlsx
+
+# Models (garder les .pkl pour partager les modèles entraînés)
+# *.pkl
+# *.joblib
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

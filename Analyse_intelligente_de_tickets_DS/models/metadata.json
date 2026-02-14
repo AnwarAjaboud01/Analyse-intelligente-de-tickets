@@ -1,0 +1,247 @@
+{
+  "urgency_model": {
+    "training_date": "2026-02-09T23:08:15.194471",
+    "algorithm": "LogisticRegression",
+    "features": {
+      "text": "text_full",
+      "numeric": [
+        "nb_mots"
+      ],
+      "tfidf_params": {
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_features": 50000,
+        "sublinear_tf": true,
+        "strip_accents": "unicode",
+        "lowercase": true
+      }
+    },
+    "classes": [
+      "Basse",
+      "Moyenne",
+      "Haute"
+    ],
+    "metrics": {
+      "oof_train": {
+        "accuracy": 0.9743842364532019,
+        "f1_macro": 0.9756734174413456
+      },
+      "validation": {
+        "accuracy": 0.963302752293578,
+        "f1_macro": 0.9657773058875913
+      },
+      "test": {
+        "accuracy": 0.981651376146789,
+        "f1_macro": 0.9809584332037034
+      }
+    },
+    "n_train_samples": 1015,
+    "n_features": 1028
+  },
+  "last_updated": "2026-02-09T23:48:22.204456",
+  "category_model": {
+    "training_date": "2026-02-09T23:11:20.137695",
+    "algorithm": "LogisticRegression (multinomial)",
+    "features": {
+      "text": "text_full",
+      "numeric": [
+        "nb_mots"
+      ],
+      "categorical_pred": [
+        "urgence_pred"
+      ],
+      "tfidf_params": {
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_features": 50000,
+        "sublinear_tf": true,
+        "strip_accents": "unicode",
+        "lowercase": true
+      }
+    },
+    "n_classes": 50,
+    "classes": [
+      "Accessoires/Request",
+      "Accès au partage",
+      "Accès au projet",
+      "Accès au serveurs",
+      "Accès scanner",
+      "Activation compte HTDS de UV365",
+      "Activation office",
+      "Affectation PC",
+      "Applications",
+      "Augmentation de taille",
+      "Autre",
+      "Bureautique",
+      "Bureautique/Incident",
+      "Changement de bande",
+      "Changement pc",
+      "Compte AD",
+      "Compte AD dÃ©sactivation",
+      "Compte AD désactivation",
+      "Compte SAP",
+      "Configuration tél",
+      "Connexion Réseau",
+      "Connexion internet",
+      "CrÃ©ation compte AD",
+      "Création compte AD",
+      "Création compte HPLC",
+      "Création compte Lims",
+      "Création de projet",
+      "Desktop/Request",
+      "Impressions & Scanner",
+      "Impressions & Scanner/Incident",
+      "Impressions Scanner Request",
+      "Installation SAP",
+      "Installation TEAMS",
+      "Laptop/Request",
+      "MAJ system",
+      "MDP CFAO",
+      "MDP SAP",
+      "Matériel",
+      "Matériel/Incident",
+      "Partage",
+      "Réseau / Connexion internet",
+      "Sauvegarde",
+      "Statistique SSID",
+      "Système/Incident",
+      "Sécurité/Sophos",
+      "Utilitaires/Incident",
+      "Utilitaires/Request",
+      "VPN",
+      "accès SAP",
+      "accès Windows"
+    ],
+    "metrics": {
+      "oof_train": {
+        "accuracy": 0.7773399014778325,
+        "f1_macro": 0.30803666807533814
+      },
+      "validation": {
+        "accuracy": 0.7706422018348624,
+        "f1_macro": 0.5033937857817053
+      },
+      "test": {
+        "accuracy": 0.7614678899082569,
+        "f1_macro": 0.4850575394734075
+      }
+    },
+    "n_train_samples": 1015,
+    "n_features": 1031
+  },
+  "type_model": {
+    "training_date": "2026-02-09T23:12:42.422779",
+    "algorithm": "LogisticRegression (balanced)",
+    "features": {
+      "text": "text_full",
+      "numeric": [
+        "nb_mots"
+      ],
+      "categorical_pred": [
+        "urgence_pred",
+        "categorie_pred"
+      ],
+      "tfidf_params": {
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_features": 50000,
+        "sublinear_tf": true,
+        "strip_accents": "unicode",
+        "lowercase": true
+      }
+    },
+    "classes": [
+      "Demande",
+      "Incident"
+    ],
+    "metrics": {
+      "oof_train": {
+        "accuracy": 0.9458128078817734,
+        "f1_macro": 0.9454391210054253
+      },
+      "validation": {
+        "accuracy": 0.9495412844036697,
+        "f1_macro": 0.9494551356364479
+      },
+      "test": {
+        "accuracy": 0.9541284403669725,
+        "f1_macro": 0.9539384719405003
+      }
+    },
+    "n_train_samples": 1015,
+    "n_features": 1054
+  },
+  "time_model": {
+    "training_date": "2026-02-09T23:48:22.173945",
+    "algorithm": "XGBRegressor (régularisé)",
+    "note": "Time regression model re-trained with strong regularization and early stopping to reduce overfitting.",
+    "regularization_config": {
+      "n_estimators": 50,
+      "max_depth": 4,
+      "min_child_weight": 5,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "reg_alpha": 0.1,
+      "reg_lambda": 1.0,
+      "early_stopping_rounds": 10
+    },
+    "features": {
+      "text": "text_full",
+      "numeric": [
+        "nb_mots"
+      ],
+      "categorical_pred": [
+        "urgence_pred",
+        "categorie_pred",
+        "type_ticket_pred"
+      ],
+      "tfidf_params": {
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_features": 50000,
+        "sublinear_tf": true,
+        "strip_accents": "unicode",
+        "lowercase": true
+      }
+    },
+    "target": "temps_resolution",
+    "metrics": {
+      "train": {
+        "mae": 6.1193840184329185,
+        "rmse": 10.92130125570007,
+        "r2": 0.892826080648554
+      },
+      "validation": {
+        "mae": 8.3118056035698,
+        "rmse": 13.971067320665936,
+        "r2": 0.8557592310438555
+      },
+      "test": {
+        "mae": 8.736039224064678,
+        "rmse": 17.331934039953598,
+        "r2": 0.7721802125610641
+      }
+    },
+    "overfitting_analysis": {
+      "old_train_test_r2_gap": 0.265,
+      "new_train_test_r2_gap": 0.1206458680874899,
+      "gap_reduction_percent": "54.5%",
+      "old_train_test_mae_gap": 5.07,
+      "new_train_test_mae_gap": 2.6166552056317594
+    },
+    "n_train_samples": 1015,
+    "n_features": 1056
+  }
+}
