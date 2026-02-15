@@ -1,0 +1,4 @@
+id,created_at,titre,texte,urgence,categorie,type_ticket,temps_resolution,statue
+t_1771185279636,2026-02-15 19:54:39,un problème de connexion wifi,un problème de connexion wifi,Moyenne,Réseau & Connexion,Incident,4.0,termine
+t_1771185298574,2026-02-15 19:54:58,Imprimante ne marche pas,Imprimante ne marche pas,Moyenne,Impression,Incident,4.0,en_attente
+t_1771185340290,2026-02-15 19:55:40,bug dans le dashboard,j'ai trouvé un bug dans le dashboard,Moyenne,Applications & Logiciels,Incident,4.0,en_attente

@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# Secret
+.env
+
 # Data (garder les CSV pour le projet)
 # *.csv
 # *.json

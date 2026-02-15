@@ -7,6 +7,12 @@ from flask import Flask, jsonify, request, send_from_directory
 import pandas as pd
 from flask_cors import CORS # Add CORS support
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    print("python-dotenv not installed, skipping .env loading")
+
 # Import from local inference proxy
 from src.inference import predict_ticket, get_chatbot_response
 
@@ -82,7 +88,12 @@ def api_add_ticket():
         return jsonify({"error": "titre et texte sont obligatoires"}), 400
 
     # prediction (using local proxy)
-    pred = predict_ticket(titre, texte)
+    try:
+        pred = predict_ticket(titre, texte)
+    except Exception as e:
+        print(f"Prediction error: {e}")
+        # Return error to client so they see why it failed
+        return jsonify({"error": str(e)}), 500
 
     ticket_id = f"t_{int(time.time()*1000)}"
     created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
