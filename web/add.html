@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ajouter un ticket</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="title">Nouveau ticket</h1>
+    </div>
+    <a class="add-btn" href="/" title="Retour">← Retour</a>
+  </header>
+
+  <main class="page">
+    <form id="ticketForm" class="form">
+      <label class="label">
+        <span>Titre *</span>
+        <input id="titre" type="text" required maxlength="140" />
+      </label>
+
+      <label class="label">
+        <span>Texte / Description *</span>
+        <textarea id="texte" required rows="6"></textarea>
+      </label>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Analyser & Ajouter</button>
+        <a class="btn" href="/">Annuler</a>
+      </div>
+
+      <div id="msg" class="msg"></div>
+    </form>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
