@@ -11,7 +11,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Imports
 from llm.simple_rag_bot import ask_bot
-from llm.groq_predict import predict_ticket_groq as predict_ticket
+from llm.transformer_engine import predict_inference_pipeline as predict_ticket
 
 from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_community.vectorstores import Chroma

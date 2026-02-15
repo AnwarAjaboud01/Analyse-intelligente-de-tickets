@@ -123,7 +123,7 @@ def _normalize_time(t: Any, urgence: str) -> float:
     return round(v, 2)
 
 
-def predict_ticket_groq(titre: str, texte: str) -> Dict[str, Any]:
+def predict_inference_pipeline(titre: str, texte: str) -> Dict[str, Any]:
     api_key = os.getenv("GROQ_API_KEY")
     if not api_key:
         raise RuntimeError("GROQ_API_KEY manquant. PowerShell: $env:GROQ_API_KEY='...'\n")
@@ -193,3 +193,40 @@ TEXTE: {texte}
         "type_ticket": type_ticket,
         "temps_resolution": temps,
     }
+
+
+def get_chatbot_response(user_message: str) -> str:
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        return "Erreur: Clé API non configurée."
+
+    client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key=api_key)
+    model = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
+    
+    system_prompt = """
+Tu es un assistant support utile pour l'application de gestion de tickets IT "Analyse intelligente de tickets".
+Tu connais le contexte marocain (français, arabe dialecte) et aides les utilisateurs avec les tickets de support IT.
+
+Contexte de l'application :
+- C'est un tableau de bord web pour créer, visualiser et gérer des tickets de support.
+- Les tickets ont : titre, description, urgence (Basse/Moyenne/Haute), catégorie, type (Demande/Incident), temps de résolution estimé.
+- Pour supprimer un ticket : Dans l'interface web, trouvez le ticket et cliquez sur le bouton de suppression (si autorisé).
+- Pour créer un ticket : Cliquez sur "Ajouter" en haut à droite.
+- Les tickets sont classés par urgence : Haute (rouge), Moyenne (orange), Basse (verte).
+- Utilisez un langage simple et helpful. Si la question n'est pas liée aux tickets, redirigez poliment.
+"""
+
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.7
+        )
+
+        return response.choices[0].message.content
+
+    except Exception as e:
+        return f"Erreur de service: {str(e)}"

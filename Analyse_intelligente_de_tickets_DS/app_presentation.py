@@ -7,7 +7,8 @@ from flask import Flask, jsonify, request, send_from_directory
 import pandas as pd
 from flask_cors import CORS # Add CORS support
 
-from src.llm.groq_predict import predict_ticket_groq
+# Import from local inference proxy
+from src.inference import predict_ticket, get_chatbot_response
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 WEB_DIR = os.path.join(APP_ROOT, "web")
@@ -80,8 +81,8 @@ def api_add_ticket():
     if not titre or not texte:
         return jsonify({"error": "titre et texte sont obligatoires"}), 400
 
-    # prediction via modèle distant
-    pred = predict_ticket_groq(titre, texte)
+    # prediction (using local proxy)
+    pred = predict_ticket(titre, texte)
 
     ticket_id = f"t_{int(time.time()*1000)}"
     created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -125,44 +126,6 @@ def api_delete_ticket(ticket_id):
         return jsonify({"error": "ticket introuvable"}), 404
     write_tickets(new_rows)
     return jsonify({"ok": True})
-
-# Chatbot configuration
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
-SYSTEM_PROMPT = """
-Tu es un assistant support utile pour l'application de gestion de tickets IT "Analyse intelligente de tickets".
-Tu connais le contexte marocain (français, arabe dialecte) et aides les utilisateurs avec les tickets de support IT.
-
-Contexte de l'application :
-- C'est un tableau de bord web pour créer, visualiser et gérer des tickets de support.
-- Les tickets ont : titre, description, urgence (Basse/Moyenne/Haute), catégorie, type (Demande/Incident), temps de résolution estimé.
-- Pour supprimer un ticket : Dans l'interface web, trouvez le ticket et cliquez sur le bouton de suppression (si autorisé).
-- Pour créer un ticket : Cliquez sur "Ajouter" en haut à droite.
-- Les tickets sont classés par urgence : Haute (rouge), Moyenne (orange), Basse (verte).
-- Utilisez un langage simple et helpful. Si la question n'est pas liée aux tickets, redirigez poliment.
-"""
-
-def get_chatbot_response(user_message):
-    if not GROQ_API_KEY:
-        return "Erreur: Clé API GROQ non configurée."
-
-    client = OpenAI(base_url=GROQ_BASE_URL, api_key=GROQ_API_KEY)
-
-    try:
-        response = client.chat.completions.create(
-            model=GROQ_MODEL,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_message}
-            ],
-            temperature=0.7
-        )
-
-        return response.choices[0].message.content
-
-    except Exception as e:
-        return f"Erreur lors de l'appel à l'API: {str(e)}"
 
 @app.route('/api/chat', methods=['POST'])
 def chat():

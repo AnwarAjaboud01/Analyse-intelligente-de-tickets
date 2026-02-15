@@ -1,7 +1,9 @@
 pandas
 scikit-learn
-streamlit
+flask
+flask-cors
+openai
 langchain
 chromadb
 sentence-transformers
-matplotlib                          
+matplotlib
