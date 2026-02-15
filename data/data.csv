@@ -1,0 +1,7 @@
+id,created_at,titre,texte,urgence,categorie,type_ticket,temps_resolution,statue
+t_1771126297424,2026-02-15 04:31:37,Connexion Wi-Fi instable,Le Wi-Fi se déconnecte plusieurs fois par jour mais le travail reste possible.,Moyenne,Réseau & Connexion,Incident,4.0,en_attente
+t_1771126366145,2026-02-15 04:32:46,Problème de réception d’emails professionnels,"Je ne reçois plus certains emails clients depuis hier, mais l’envoi fonctionne.",Moyenne,Email / Messagerie,Incident,4.0,en_attente
+t_1771126431404,2026-02-15 04:33:51,Problème d’affichage sur l’application RH,Certains écrans affichent des données incorrectes mais l’application reste utilisable.,Moyenne,Applications & Logiciels,Incident,4.0,en_attente
+t_1771126460604,2026-02-15 04:34:20,Ajouter un filtre par date dans les rapports,Pouvez-vous ajouter un filtre de sélection par date dans l’écran des rapports pour faciliter l’analyse ?,Basse,Applications & Logiciels,Demande,2.0,en_attente
+t_1771126493404,2026-02-15 04:34:53,Ajouter un filtre par date dans les rapports,Plus aucune connexion internet ni accès aux serveurs internes. Tous les postes sont impactés.,Haute,Réseau & Connexion,Incident,2.0,termine
+t_1771126509405,2026-02-15 04:35:09,Fuite de données — accès non autorisé,Un utilisateur non administrateur a pu accéder à des données sensibles.,Haute,Sécurité,Incident,2.0,en_attente

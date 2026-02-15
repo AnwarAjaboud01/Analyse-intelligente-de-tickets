@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tickets Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <img src="/logo.png" alt="Logo" class="logo">
+      <div id="errorBox" class="errorbox"></div>
+    </div>
+    <a class="add-btn" href="/add" title="Ajouter un ticket">
+      <span class="plus">+</span> Ajouter
+    </a>
+  </header>
+
+  <main id="dashboardRoot" class="page">
+    <section class="columns">
+      <div class="col col-high">
+        <div class="col-head">
+          <h2>Urgence Haute</h2>
+        </div>
+        <div id="gridHigh" class="grid"></div>
+      </div>
+
+      <div class="col col-mid">
+        <div class="col-head">
+          <h2>Urgence Moyenne</h2>
+        </div>
+        <div id="gridMid" class="grid"></div>
+      </div>
+
+      <div class="col col-low">
+        <div class="col-head">
+          <h2>Urgence Basse</h2>
+        </div>
+        <div id="gridLow" class="grid"></div>
+      </div>
+    </section>
+
+    <section class="done-section">
+      <div class="done-head">
+        <h2>Terminés</h2>
+        <span class="count">(<span id="doneCount">0</span>)</span>
+      </div>
+      <div id="doneGrid" class="grid done-grid"></div>
+    </section>
+  </main>
+
+  <!-- Chatbot Toggle Button -->
+  <button id="chatbot-toggle-btn" class="chatbot-toggle-btn">💬</button>
+
+  <!-- Chatbot Window -->
+  <div id="chatbot" class="chatbot">
+    <div class="chatbot-header">
+      <h3>🤖 Chatbot Support</h3>
+      <button id="chatbot-close" class="chatbot-close">✕</button>
+    </div>
+    <div id="chatbot-body" class="chatbot-body">
+      <div id="chat-messages" class="chat-messages">
+        <div class="message bot-message">
+          <strong>Bot:</strong> Bonjour! Comment puis-je vous aider avec vos tickets?
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="Tapez votre message..." />
+        <button id="send-btn">Envoyer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+  <script src="/chatbot.js"></script>
+</body>
+</html>
